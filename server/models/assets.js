@@ -178,7 +178,11 @@ module.exports = class Asset extends Model {
     }
     const sendFile = Promise.promisify(res.sendFile, {context: res})
     res.type(path.extname(assetPath))
-    await sendFile(cachePath, { dotfiles: 'deny' })
+    try {
+      await sendFile(cachePath, { dotfiles: 'deny' })
+    }catch(error) {
+      await sendFile(cachePath, { dotfiles: 'deny', root: '/wiki/docsData' })
+    }
     return true
   }
 
