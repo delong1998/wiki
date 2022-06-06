@@ -181,7 +181,7 @@ module.exports = class Asset extends Model {
     try {
       await sendFile(cachePath, { dotfiles: 'deny' })
     }catch(error) {
-      await sendFile(cachePath, { dotfiles: 'deny', root: '/wiki/docsData' })
+      await sendFile(cachePath, { dotfiles: 'deny', root: '/wiki/' })
     }
     return true
   }
